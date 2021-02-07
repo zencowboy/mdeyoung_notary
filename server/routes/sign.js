@@ -32,5 +32,22 @@ router
       }
     });
   });
+router
+  .route("/sign_in") //login
+  .post((req, res) => {
+    let { login, password } = req.body;
+    User.find({ login, password }, (err, list) => {
+      if (!list.length) {
+        res.status(413).json(null);
+      } else {
+        User.create(req.body).then((confirmation) => {
+          let tokenUrl = token.generate(`${login}|${password}`);
+          req.session.user = confirmation;
+          console.log(req.session);
+          res.json({ token: tokenUrl });
+        });
+      }
+    });
+  });
 
 module.exports = router;

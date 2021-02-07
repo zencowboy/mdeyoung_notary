@@ -1,0 +1,12 @@
+.add-background {
+  color: linear-gradient(0deg, #070707, #ffffff);
+  font-family: sans-serif;
+  min-height: 100vh;
+  background-image: url("background.svg");
+  justify-content: center;
+  align-items: center;
+  background-size: 125%;
+  background-repeat: no-repeat;
+  background-position: 0 170px;
+  background-attachment: fixed;
+}
