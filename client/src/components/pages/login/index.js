@@ -43,7 +43,7 @@ function Login({ cookies, history }) {
                 type="email"
                 placeholder="Enter email"
               />
-              <Form.Text className="text-muted">
+              <Form.Text style={{ color: "white" }}>
                 We'll never share your email with anyone else.
               </Form.Text>
             </Form.Group>

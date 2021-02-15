@@ -4,6 +4,7 @@ import qs from "qs";
 // import moment from "moment";
 import { withCookies } from "react-cookie";
 import { withRouter } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 // import "./style.css";
 
 function Register(props) {
@@ -17,7 +18,7 @@ function Register(props) {
     console.log("firstname", firstName);
     console.log("lastname", lastName);
     console.log("email", email);
-    console.log("passpord", password);
+    console.log("password", password);
   }, [firstName, lastName, email, password]);
 
   const registerUser = () => {
@@ -49,7 +50,14 @@ function Register(props) {
           last_name: lastName,
         }),
       })
-        .then((json) => json.json())
+        .then((json) => {
+          console.log(json);
+          if (json.status == 200) {
+            return json.json();
+          } else {
+            throw new Error(json.code);
+          }
+        })
         .then((response) => {
           console.log(response);
           if (!response) {
@@ -70,101 +78,105 @@ function Register(props) {
   };
 
   return (
-    <div className="container-fluid other-background login" style={{}}>
-      <img
-        className="mb-4"
-        src="/../tokofolio_logo1.svg"
-        alt="200"
-        width="200"
-        height="300"
-      />
-      <h1 className="h3 mb-3 font-weight-normal">Please Register</h1>
-      <h3 className="text-danger">{errorMsg} </h3>
-      <div className="form-group">
-        <label htmlFor="first_name" className="sr-only">
-          First Name
-        </label>
+    <Container>
+      <Row className="justify-content-center">
+        <Col lg="6" md="8" xs="10">
+          <img
+            className="mb-4"
+            src="/../tokofolio_logo1.svg"
+            alt="200"
+            width="200"
+            height="300"
+          />
+          <h1 className="h3 mb-3 font-weight-normal">Please Register</h1>
+          <h3 className="text-danger">{errorMsg} </h3>
+          <div className="form-group">
+            <label htmlFor="first_name" className="sr-only">
+              First Name
+            </label>
 
-        <input
-          type="text"
-          className="form-control"
-          placeholder="First Name"
-          required=""
-          autoFocus=""
-          name="first_name"
-          value={firstName}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-        />
-      </div>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="First Name"
+              required=""
+              autoFocus=""
+              name="first_name"
+              value={firstName}
+              onChange={(e) => {
+                setFirstName(e.target.value);
+              }}
+            />
+          </div>
 
-      <div className="form-group">
-        <label htmlFor="last_name" className="sr-only">
-          Last Name
-        </label>
-        <input
-          type="text"
-          className="form-control"
-          placeholder="Last Name"
-          required=""
-          autoFocus=""
-          name="last_name"
-          value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-        />
-      </div>
+          <div className="form-group">
+            <label htmlFor="last_name" className="sr-only">
+              Last Name
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Last Name"
+              required=""
+              autoFocus=""
+              name="last_name"
+              value={lastName}
+              onChange={(e) => {
+                setLastName(e.target.value);
+              }}
+            />
+          </div>
 
-      <div className="form-group">
-        <label htmlFor="inputEmail" className="sr-only">
-          Email
-        </label>
-        <input
-          type="email"
-          className="form-control"
-          placeholder="Email address"
-          required=""
-          autoFocus=""
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        ></input>
-      </div>
+          <div className="form-group">
+            <label htmlFor="inputEmail" className="sr-only">
+              Email
+            </label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Email address"
+              required=""
+              autoFocus=""
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            ></input>
+          </div>
 
-      <div className="form-group">
-        <label htmlFor="password" className="sr-only">
-          Password
-        </label>
-        <input
-          type="password"
-          className="form-control"
-          placeholder="Password"
-          required=""
-          id="password"
-          name="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        ></input>
-        <div className="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me" /> Remember me
-          </label>
-        </div>
-      </div>
-      <button
-        className="btn btn-lg btn-primary btn-block"
-        onClick={registerUser}
-      >
-        Submit
-      </button>
-    </div>
+          <div className="form-group">
+            <label htmlFor="password" className="sr-only">
+              Password
+            </label>
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              required=""
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            ></input>
+            <div className="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me" /> Remember me
+              </label>
+            </div>
+          </div>
+          <button
+            className="btn btn-lg btn-primary btn-block"
+            onClick={registerUser}
+          >
+            Submit
+          </button>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
