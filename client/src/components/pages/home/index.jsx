@@ -27,27 +27,37 @@ export default function Home() {
           <Card style={{ width: "50vw", margin: "50px auto" }}>
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
-              <Card.Title>"What is a Smart Contract?"</Card.Title>
+              <Card.Title>
+                How Blockchain Technology Can Be Used For Digital Notary
+                Services
+              </Card.Title>
               <Card.Text>
-                A Smart Contract is an agreement between parties that is stored
-                on and executed by a blockchain. Smart contracts may have the
-                most potential to change the way companies and organizations do
-                business.
+                By using Blockchain users can be guaranteed the integrity of
+                data on the Ethereum chain. The known characteristics of
+                blockchain already set it up to be a great asset to improve
+                notary service in three ways. Proof of Existence, Proof of
+                Ownership and Document Ownership Transfer.
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">Sign up now!</Button>
             </Card.Body>
           </Card>
         </Carousel.Item>
         <Carousel.Item interval={2000}>
           <Card style={{ width: "50vw", margin: "50px auto" }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
+            <Card.Img
+              variant="top"
+              // src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Ethereum-icon-purple.svg/440px-Ethereum-icon-purple.svg.png"
+            />
             <Card.Body>
               <Card.Title>How does it work?</Card.Title>
               <Card.Text>
-                MdeYoung Notary allows you to simply and easily store the
-                contents of your contract on the Ethereum Blockchain.
+                Ethereum operates via a global network of computers that work
+                together as a supercomputer. The network assembles and runs
+                smart contracts - applications that are, in theory, independent
+                from any third party interference or censorship, as the
+                blockchain is resistant to tampering.
               </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Button variant="primary">Sign up now!</Button>
             </Card.Body>
           </Card>
         </Carousel.Item>
@@ -55,9 +65,15 @@ export default function Home() {
           <Card style={{ width: "50vw", margin: "50px auto" }}>
             <Card.Img variant="top" src="holder.js/100px180" />
             <Card.Body>
-              <Card.Title>Sign up now!</Card.Title>
-              <Card.Text>Simply blah blah blah</Card.Text>
-              <Button variant="primary">Go somewhere</Button>
+              <Card.Title>Benefits Of Using Blockchain Technology </Card.Title>
+              <Card.Text>
+                • Security of stored documents and deeds. • Private key access
+                to the documents. • Secured storage on the blocks with
+                appropriate timestamps. • Seamless transfer of document
+                ownership through the network. • Open transactions on the
+                network for the verification process.
+              </Card.Text>
+              <Button variant="primary">Sign up now!</Button>
             </Card.Body>
           </Card>
         </Carousel.Item>

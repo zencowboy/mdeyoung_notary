@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { withRouter } from "react-router-dom";
 import { withCookies } from "react-cookie";
+import { Context } from "../../Context";
 
 function Login({ cookies, history }) {
   const [form, setForm] = useState({});
+  const { setLoginStatus } = useContext(Context);
 
   function handleInput(e) {
     let { name, value } = e.target;
@@ -26,6 +28,7 @@ function Login({ cookies, history }) {
           path: "/",
           maxAge: 30 * 60,
         });
+        setLoginStatus(true);
         history.push("/account");
       });
   }

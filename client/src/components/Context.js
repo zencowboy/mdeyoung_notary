@@ -1,8 +1,13 @@
-import { useState } from "react";
 import React, { useState } from "react";
 
 export const Context = React.createContext();
 
-export default function ContextProvider(children) {
-  return <Context.Provider value={}>{children}</Context.Provider>;
+export default function ContextProvider({ children }) {
+  const [loginStatus, setLoginStatus] = useState(false);
+
+  return (
+    <Context.Provider value={{ loginStatus, setLoginStatus }}>
+      {children}
+    </Context.Provider>
+  );
 }

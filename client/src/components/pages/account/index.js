@@ -1,16 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { withCookies } from "react-cookie";
 import { Card, Button, Row, Container } from "react-bootstrap";
-import Blockchain from "./Blockchain";
+import DropZone from "./DropZone";
+import { withRouter } from "react-router-dom";
+import { Context } from "../../Context";
 
-function Account({ cookies }) {
+function Account({ cookies, history }) {
   const [contracts, setContracts] = useState(["Mortgage", "Wedding contract"]);
+  const { setLoginStatus } = useContext(Context);
+  let token = cookies.get("token");
 
   useEffect(() => {
-    let token = cookies.get("token");
-    // fetch(`http://localhost:4000/contract?token=${token}`)
-    //   .then((res) => res.json())
-    //   .then((data) => setState(data));
+    fetch(`http://localhost:4000/contract?token=${token}`)
+      .then((json) => {
+        console.log(json);
+        if (json.status == 200) {
+          setLoginStatus(true);
+          return json.json();
+        } else {
+          history.push("/login");
+          setLoginStatus(false);
+        }
+      })
+      .then((response) => {
+        // setContracts(response)
+        setContracts(response);
+      })
+      .catch((err) => {
+        history.push("/login");
+        setLoginStatus(false);
+      });
   }, []);
 
   return (
@@ -21,7 +40,7 @@ function Account({ cookies }) {
             <Card.Header>{contract}</Card.Header>
             <Card.Body>
               <Card.Title>
-                Contract between You and the Bank of Ukraine
+                Contract between You and the Bank of America
               </Card.Title>
               <Card.Text>
                 With supporting text below as a natural lead-in to additional
@@ -32,13 +51,13 @@ function Account({ cookies }) {
                 <Button variant="danger">Remove</Button>
               </Row>
             </Card.Body>
-            <Card.Footer className="text-muted">2 days ago</Card.Footer>
+            <Card.Footer className="text-muted">5 days ago</Card.Footer>
           </Card>
         ))}
       </Row>
-      <Blockchain />
+      <DropZone token={token} />
     </Container>
   );
 }
 
-export default withCookies(Account);
+export default withRouter(withCookies(Account));
