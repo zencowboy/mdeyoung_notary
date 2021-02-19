@@ -91,10 +91,13 @@ app.post("/user/sign_in", (req, res) => {
 });
 
 mongoose
-  .connect("mongodb://localhost:27017/mdeyoung", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    "mongodb+srv://mdeyoung:Margo45!!!@cluster0.suui5.mongodb.net/test?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then((ok) =>
     console.log(`Connected succesfully to ${ok.connections[0].name}`)
   )
